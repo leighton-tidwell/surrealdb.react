@@ -1,7 +1,7 @@
 {
-  "name": "ts-npm-package-boilerplate",
-  "version": "0.1.6",
-  "description": "TypeScript NPM Module Boilerplate",
+  "name": "surrealdb.react",
+  "version": "0.1.0",
+  "description": "A ReactJS wrapper for surrealdb.js",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -18,18 +18,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hebertcisco/ts-npm-package-boilerplate.git"
+    "url": "git+https://github.com/leighton-tidwell/surrealdb.react.git"
   },
   "keywords": [
     "boilerplate",
     "typescript"
   ],
-  "author": "Hebert Cisco",
-  "license": "MIT",
+  "author": "Leighton Tidwell",
+  "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/hebertcisco/ts-npm-package-boilerplate/issues"
+    "url": "https://github.com/leighton-tidwell/surrealdb.react/issues"
   },
-  "homepage": "https://github.com/hebertcisco/ts-npm-package-boilerplate#readme",
+  "homepage": "https://github.com/leighton-tidwell/surrealdb.react#readme",
   "devDependencies": {
     "@types/jest": "28.1.6",
     "@typescript-eslint/eslint-plugin": "5.30.7",
