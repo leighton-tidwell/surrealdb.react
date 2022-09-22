@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - with:
+        with:
           ref: master
       - uses: actions/setup-node@v2
         with:
