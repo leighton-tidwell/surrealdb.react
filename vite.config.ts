@@ -1,9 +1,9 @@
-import { resolve } from "node:path";
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tsConfigPaths from "vite-tsconfig-paths";
-import dts from "vite-plugin-dts";
-import { EsLinter, linterPlugin } from "vite-plugin-linter";
+import { resolve } from 'node:path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsConfigPaths from 'vite-tsconfig-paths';
+import dts from 'vite-plugin-dts';
+import { EsLinter, linterPlugin } from 'vite-plugin-linter';
 
 // https://vitejs.dev/config/
 export default defineConfig((configEnv) => ({
@@ -11,25 +11,25 @@ export default defineConfig((configEnv) => ({
     react(),
     tsConfigPaths(),
     linterPlugin({
-      include: ["./src}/**/*.{ts,tsx}"],
+      include: ['./src}/**/*.{ts,tsx}'],
       linters: [new EsLinter({ configEnv })],
     }),
     dts({
-      include: ["lib/main.tsx"],
+      include: ['lib/surrealdb.react.tsx'],
       beforeWriteFile: (filePath, content) => ({
-        filePath: filePath.replace("/lib", ""),
+        filePath: filePath.replace('/lib', ''),
         content,
       }),
     }),
   ],
   build: {
     lib: {
-      entry: resolve("lib", "main.tsx"),
-      name: "ReactFeatureFlag",
+      entry: resolve('lib', 'surrealdb.react.tsx'),
+      name: 'ReactFeatureFlag',
       fileName: (format) => `surrealdb.react.${format}.js`,
     },
     rollupOptions: {
-      external: ["react"],
+      external: ['react'],
     },
   },
 }));

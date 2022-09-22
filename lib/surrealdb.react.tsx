@@ -1,2 +1,2 @@
-export { useQuery } from './hooks/useQuery.js';
-export { SurrealContext, DatabaseProvider, useSurreal } from './context/database.js';
+export { useQuery } from './hooks/useQuery';
+export { SurrealContext, DatabaseProvider, useSurreal } from './context/database';

@@ -6,7 +6,6 @@
   "main": "./dist/surrealdb.react.umd.js",
   "module": "./dist/surrealdb.react.es.js",
   "types": "./dist/lib/surrealdb.react.d.ts",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

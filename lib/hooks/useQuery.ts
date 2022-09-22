@@ -1,13 +1,5 @@
 import { useContext, useCallback, useEffect, useState } from 'react';
-import { SurrealContext, SurrealContextType } from '../context/database.js';
-
-interface QueryProps {
-  query: string;
-  args: any;
-  options: {
-    immediate?: boolean;
-  };
-}
+import { SurrealContext, SurrealContextType } from '../context/database';
 
 interface QueryType {
   data: unknown;
@@ -18,27 +10,27 @@ interface QueryType {
   time?: string | null;
 }
 
-const defaultOptions = {
-  immediate: true,
+type OptionsType = {
+  immediate: boolean;
 };
 
-export const useQuery = ({ query, args = {}, options = {} }: QueryProps): QueryType => {
+export const useQuery = (query: string, args: object = {}, options: OptionsType = { immediate: true }): QueryType => {
   const { database, isReady } = useContext<SurrealContextType>(SurrealContext);
   const [data, setData] = useState<unknown>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | boolean | null>(null);
   const [time, setTime] = useState<string | null>(null);
   const [status, setStatus] = useState<'PENDING' | 'INFLIGHT' | 'OK' | 'ERR'>('PENDING');
-  options = { ...defaultOptions, ...options };
 
   const refetch = useCallback(
-    async (refetchArgs: any = {}) => {
+    async (refetchArgs: object = {}) => {
       if (isReady) {
         setStatus('INFLIGHT');
         const response = (await database?.query(query, Object.keys(refetchArgs).length ? refetchArgs : args)) as Array<{
           time: string;
           status: string;
           result: unknown;
+          detail?: string;
         }>;
 
         if (response.length) {
@@ -51,10 +43,10 @@ export const useQuery = ({ query, args = {}, options = {} }: QueryProps): QueryT
             setError(false);
 
             return response[0].result;
-          } else {
+          } else if (response[0].status === 'ERR' && response[0].detail) {
             setStatus('ERR');
             setLoading(false);
-            setError('Something went wrong.');
+            setError(response[0].detail);
           }
         }
       } else {

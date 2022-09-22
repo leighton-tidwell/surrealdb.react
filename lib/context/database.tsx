@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+// @ts-expect-error
 import Surreal from 'surrealdb.js';
 
 export interface SurrealContextType {
@@ -37,23 +38,25 @@ export const DatabaseProvider = ({ children, database, options }: SurrealProvide
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // TODO: investigate use of useAsyncEffect
+  const init = useCallback(async () => {
+    await database.signin({
+      user,
+      pass,
+    });
+
+    await database.use(namespace, db);
+
+    setIsReady(true);
+  }, []);
+
   useEffect(() => {
     if (initialQuery) return;
     initialQuery = true;
 
-    database
-      .signin({ user, pass })
-      .then(() => database.use(namespace, db))
-      .then(() => {
-        setIsReady(true);
-      })
-      .catch((error) => {
-        setHasError(true);
-        if (error instanceof Error) {
-          setErrorMessage(error.message);
-        }
-      });
+    init().catch((err: Error) => {
+      setHasError(true);
+      setErrorMessage(err.message);
+    });
   }, []);
 
   return (
