@@ -1,0 +1,11 @@
+{
+  "transform": {
+    "^.+\\.(ts|js|tsx|jsx)$": "@swc/jest"
+  },
+  "transformIgnorePatterns": [
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+    "^.+\\.module\\.(css|sass|scss)$"
+  ],
+  "testMatch": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+}
