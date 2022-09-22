@@ -1,4 +1,4 @@
-# surrealdb.react
+# surrealdb.react [![npm version](https://badge.fury.io/js/surrealdb.react.svg)](https://badge.fury.io/js/surrealdb.react)
 
 An open-source ReactJS wrapper for surrealdb.js that is highly inspired by [Apollo Hooks](https://www.apollographql.com/docs/react/api/react/hooks/).
 
