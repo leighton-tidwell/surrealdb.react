@@ -7,8 +7,8 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build
+  setup:
+    name: Setup
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -24,13 +24,18 @@ jobs:
       - name: Install dependencies
       - run: yarn ci
 
+  test:
+    name: Test
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Run tests
       - run: yarn test --coverage
 
-      - name: Upload code report
-      - uses: codecov/codecov-action@v3
-      - with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
+  lint:
+    name: Lint
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - name: Run lint
       - run: yarn lint
