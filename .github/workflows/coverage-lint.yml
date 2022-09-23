@@ -15,14 +15,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-        run: yarn test --coverage
-        uses: codecov/codecov-action@v2
-        uses: codecov/codecov-action@v2
-        with:
+      - run: yarn test --coverage
+      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v2
+      - with:
           token: ${{ secrets.CODECOV_TOKEN }}
-        
+
   lint:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      run: yarn lint
+      - run: yarn lint
