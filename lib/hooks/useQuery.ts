@@ -1,7 +1,7 @@
 import { useContext, useCallback, useEffect, useState } from 'react';
 import { SurrealContext, SurrealContextType } from '../context/database';
 
-interface QueryType {
+export interface QueryType {
   data: unknown;
   loading: boolean;
   error: string | boolean | null;
@@ -10,11 +10,13 @@ interface QueryType {
   time?: string | null;
 }
 
-type OptionsType = {
+export type OptionsType = {
   immediate: boolean;
 };
 
-export const useQuery = (query: string, args: object = {}, options: OptionsType = { immediate: true }): QueryType => {
+export type args = Record<string, unknown>;
+
+export const useQuery = (query: string, args: args = {}, options: OptionsType = { immediate: true }): QueryType => {
   const { database, isReady } = useContext<SurrealContextType>(SurrealContext);
   const [data, setData] = useState<unknown>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -23,7 +25,7 @@ export const useQuery = (query: string, args: object = {}, options: OptionsType 
   const [status, setStatus] = useState<'PENDING' | 'INFLIGHT' | 'OK' | 'ERR'>('PENDING');
 
   const refetch = useCallback(
-    async (refetchArgs: object = {}) => {
+    async (refetchArgs: args = {}) => {
       if (isReady) {
         setStatus('INFLIGHT');
         const response = (await database?.query(query, Object.keys(refetchArgs).length ? refetchArgs : args)) as Array<{

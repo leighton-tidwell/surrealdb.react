@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-// @ts-expect-error
 import Surreal from 'surrealdb.js';
 
 export interface SurrealContextType {
@@ -16,7 +15,7 @@ export const SurrealContext = createContext<SurrealContextType>({
   errorMessage: '',
 });
 
-interface SurrealProviderProps {
+export interface SurrealProviderProps {
   children?: ReactNode;
   database: InstanceType<typeof Surreal>;
   options: {

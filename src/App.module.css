@@ -1,0 +1,46 @@
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.stat {
+  padding: 1em;
+  background-color: hsl(210, 11%, 20%);
+  border-radius: 8px;
+}
+
+.stat h1 {
+  font-size: 1.2em;
+  margin: 0;
+  padding: 0;
+}
+
+.stat p {
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0;
+}
+
+.subStat {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.subStat h2 {
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+}
+
+.subStat h2::after {
+  content: ':';
+  margin-right: 1em;
+}
+
+.subStat p {
+  font-size: 0.7em;
+  margin: 0;
+  padding: 0;
+}

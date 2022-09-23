@@ -6,6 +6,9 @@
     "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
     "^.+\\.module\\.(css|sass|scss)$"
   ],
-  "testMatch": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[tj]s?(x)"],
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  "testMatch": ["**/?(*.)+(spec|test).[tj]s?(x)"],
+  "collectCoverage": true,
+  "collectCoverageFrom": ["./lib/context/*.[jt]s?(x)", "./lib/hooks/*.[jt]s?(x)", "./lib/index.ts"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "testEnvironment": "jsdom"
 }

@@ -15,7 +15,7 @@ export default defineConfig((configEnv) => ({
       linters: [new EsLinter({ configEnv })],
     }),
     dts({
-      include: ['lib/surrealdb.react.tsx'],
+      include: ['./lib/**/*.{ts,tsx}'],
       beforeWriteFile: (filePath, content) => ({
         filePath: filePath.replace('/lib', ''),
         content,
@@ -24,9 +24,9 @@ export default defineConfig((configEnv) => ({
   ],
   build: {
     lib: {
-      entry: resolve('lib', 'surrealdb.react.tsx'),
+      entry: resolve('lib', 'index.ts'),
       name: 'ReactFeatureFlag',
-      fileName: (format) => `surrealdb.react.${format}.js`,
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
       external: ['react'],
