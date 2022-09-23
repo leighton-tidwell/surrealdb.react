@@ -11,17 +11,12 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
       - uses: actions/checkout@v3
         with:
           ref: master
-
-      - name: Set up Node.js
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Install dependencies
       - run: yarn ci
 
   test:
@@ -29,7 +24,6 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Run tests
       - run: yarn test --coverage
 
   lint:
@@ -37,5 +31,4 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Run lint
       - run: yarn lint
