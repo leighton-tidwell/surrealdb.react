@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: master
+          clean: false
       - uses: actions/setup-node@v3
         with:
           node-version: 16
