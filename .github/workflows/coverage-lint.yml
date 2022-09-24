@@ -12,25 +12,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          clean: false
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: yarn install
+      - uses: actions/upload-artifact@v3
 
   test:
     name: Test
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
       - run: yarn test --coverage
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage
 
   upload_coverage:
     name: Upload Coverage
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
@@ -40,4 +48,5 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v3
       - run: yarn lint
