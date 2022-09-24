@@ -10,6 +10,8 @@ jobs:
   setup:
     name: Setup
     runs-on: ubuntu-latest
+    env:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
